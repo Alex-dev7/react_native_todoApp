@@ -1,16 +1,20 @@
 import { useState } from 'react';
-import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View, ScrollView, FlatList } from 'react-native';
 
 
 export default function App() {
   const [goalText, setGoalText] = useState('')
+  const [goals, setGoals] = useState([])
 
   function goalInputHandler(enteredText) {
    setGoalText(enteredText)
   }
 
   function addGoalHandler() {
-    console.log(goalText)
+    setGoals((currentGoals) => [
+      ...currentGoals,
+       {text: goalText, key: Math.random().toString()},
+      ])
   }
 
 
@@ -25,8 +29,16 @@ export default function App() {
         <Button title="Add todo" onPress={addGoalHandler} />
       </View>
       <View style={styles.todoContainer}>
-        <Text>List of To Do</Text>
+        <FlatList data={goals} renderItem={itemData => {
+          return (
+            <View style={styles.goalItem} >
+               <Text style={styles.goalText}>{itemData.item.text}</Text>
+            </View>            
+          )
+        }} 
+         />      
       </View>
+
     </View>
   );
 }
@@ -55,5 +67,14 @@ const styles = StyleSheet.create({
   },
   todoContainer: {
     flex: 5,
+  },
+  goalItem: {
+    margin: 8,
+    padding: 8,
+    borderRadius: 6,
+    backgroundColor: '#5e8acc',
+  },
+  goalText: {
+    color: 'white',
   }
 });
