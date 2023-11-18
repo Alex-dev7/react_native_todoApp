@@ -1,22 +1,34 @@
-import { StyleSheet, Text, View } from 'react-native';
+import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Hello World</Text>
+    <View style={styles.appContainer} >
+
+      <View style={styles.inputContainer}> 
+        <TextInput style={styles.textInput} placeholder='Your daily todo list' />
+        <Button title='Add todo' />
+      </View>
+      <View>
+        <Text>List of To Do</Text>
+      </View>
+   
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ff875f',
-    alignItems: 'center',
-    justifyContent: 'center',
-   
+  appContainer: {
+    padding: 50,
   },
-  text: {
-    color: 'white',
+  inputContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  textInput: {
+    borderWidth: 1,
+    borderColor: '#cccccc',
+    width: '80%',
+    marginRight: 5,
+    padding: 8,
   }
 });
