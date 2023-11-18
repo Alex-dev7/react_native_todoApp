@@ -1,22 +1,32 @@
+import { useState } from 'react';
 import { Button, StyleSheet, Text, TextInput, View } from 'react-native';
 
-export default function App() {
-  function goalInputHandler() {}
 
-  function addGoalHandler() {}
+export default function App() {
+  const [goalText, setGoalText] = useState('')
+
+  function goalInputHandler(enteredText) {
+   setGoalText(enteredText)
+  }
+
+  function addGoalHandler() {
+    console.log(goalText)
+  }
 
 
   return (
-    <View style={styles.appContainer} >
-
-      <View style={styles.inputContainer}> 
-        <TextInput style={styles.textInput} placeholder='Your daily todo list' />
-        <Button title='Add todo'  />
+    <View style={styles.appContainer}>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.textInput}
+          placeholder="Your daily todo list"
+          onChangeText={goalInputHandler}
+        />
+        <Button title="Add todo" onPress={addGoalHandler} />
       </View>
       <View style={styles.todoContainer}>
         <Text>List of To Do</Text>
       </View>
-   
     </View>
   );
 }
