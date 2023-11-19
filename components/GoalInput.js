@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Button, StyleSheet, TextInput, View, Modal } from "react-native"
+import { Button, StyleSheet, TextInput, View, Modal, Image } from "react-native"
 
 function GoalInput(props) {
     const [goalText, setGoalText] = useState('')
@@ -18,18 +18,20 @@ function GoalInput(props) {
   return (
     <Modal visible={props.visible} animationType="slide">
         <View style={styles.inputContainer}>
+            <Image style={styles.image} source={require('../assets/images/light.png')} />
             <TextInput
             style={styles.textInput}
+           placeholderTextColor={'#3b3e3e'}
             placeholder="Your daily todo list"
             onChangeText={goalInputHandler}
             value={goalText}
             />
             <View style={styles.buttonContainer}>
                 <View style={styles.button}>
-                    <Button title="Add todo" onPress={addGoalHandler} />
+                    <Button title="Add todo" onPress={addGoalHandler}  color={'white'}/>
                 </View>
                 <View style={styles.button}>
-                    <Button title='cancel' onPress={props.onCancel}/>
+                    <Button title='cancel' onPress={props.onCancel} color={'white'}/>
                 </View>
             </View>
             
@@ -46,16 +48,19 @@ const styles = StyleSheet.create({
         flexDirection: 'column',
         justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 24,
+        backgroundColor: '#1d7e7c',
         padding: 16,
-        borderBottomWidth: 1,
-        borderBottomColor: '#cccccc',
+        paddingBottom: '20%',
       },
       textInput: {
         borderWidth: 1,
-        borderColor: '#cccccc',
+        borderColor: '#38bfbd00',
         width: '100%',
         padding: 8,
+        color: 'white',
+        borderRadius: 4,
+        backgroundColor: '#31b4b2',
+        padding: 15,
       },
       buttonContainer: {
         marginTop: 16,
@@ -64,5 +69,14 @@ const styles = StyleSheet.create({
       button: {
         width: '30%',
         marginHorizontal: 8,
+        borderWidth: 1,
+        borderColor: '#cccccc',
+        borderRadius: 4,
+      },
+      image: {
+        width: 100,
+        height: 100,
+        margin: 30,
+        // marginBottom: 50,
       }
 })
